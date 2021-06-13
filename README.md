@@ -14,3 +14,5 @@ My youtube lecture link on this topic of using SIMD parallelism using Intrinsics
 4) A pdf of the presentation slide is also there.
 
 5) Problems for Quiz/Exam
+
+I have covered broadcast, initialization, memory alignment allocation (static and dynamic ways) and matrix multiplication code using Intel Intrinsics in Part 2.
