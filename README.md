@@ -32,7 +32,7 @@ Memory alignment is ensured using mm_malloc() function.
  
  Example Usage: Allocate memory for 128 doubles or an array of doubles of size 128.
  size_t N = 128;   
- double *arr = (double*)_mm_malloc( N * sizeof(double), 32 );
+ double *arr = (double *)_mm_malloc( N * sizeof(double), 32 );
  
 
 2) void _mm256_store_pd( double *mem_addr, __m256d a )
