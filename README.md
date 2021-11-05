@@ -26,7 +26,14 @@ elements) from memory into a variable of type __m256d and then return this varia
 mem_addr must be aligned on a 32-byte boundary or code can crash due to segmentation fault.
 Memory alignment is ensured using mm_malloc() function.
 
-// void* _mm_malloc (int sizeInBytes, int alignment) // alignment is 32 for AVX intrinsics
+**Aligned memory allocation using _mm_malloc function**
+ 
+ void* _mm_malloc (int sizeInBytes, int alignment) // alignment is 32 for AVX intrinsics
+ 
+ Example Usage: Allocate memory for 128 doubles or an array of doubles of size 128.
+ size_t N = 128;   
+ double *arr = (double*)_mm_malloc( N * sizeof(double), 32 );
+ 
 
 2) void _mm256_store_pd( double *mem_addr, __m256d a )
 
