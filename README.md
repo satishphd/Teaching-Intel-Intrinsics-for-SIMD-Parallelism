@@ -9,7 +9,8 @@ My youtube lecture link on this topic of using SIMD parallelism using Intrinsics
 
 2) evalPoly.c is a program that contains a function to evaluate a polynomial. Lab work can be using intrinsics to implement the function.
 
-3) matmul_intrinsic.c is a program that contains program that uses Intel AVX functions to implement matrix-matrix multiplication.
+3) matmul_intrinsic.c is a program that contains program that uses x86 AVX functions to implement matrix-matrix multiplication.
+   loop_AVX512.c is a program that shows how to parallelize a C loop using AVX-512 intrinsic functions.
 
 4) A pdf of the presentation slide is also there.
 
