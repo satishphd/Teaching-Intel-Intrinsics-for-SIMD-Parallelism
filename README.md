@@ -60,3 +60,9 @@ the product.
 
 Initialize a __m256d variable with four doubles passed to this function (e0, e1, e2, e3) 
 and return it back.
+
+6) __m256d _mm256_cmp_pd(r1, r2, 14); //greater than comparison     
+   Returns bitmask (1111s or 0000s) that stores the comparison result of this condition if( r1 > r2 )
+   if (r1 > r2 ), returns 1111..      (Since this is bitwise 1111.., this is NaN in IEEE-754 specification) 
+   
+   if (r1 > r2 ), returns 0000.. 
