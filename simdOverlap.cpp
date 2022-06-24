@@ -43,16 +43,16 @@ int simdDoOverlap( struct MBR *R1, struct MBR *R2 )
     __m256d R2MBR1 = _mm256_set_pd(R2->boundary->at(1), R2->boundary->at(0), R2->boundary->at(3), R2->boundary->at(2));
     __m256d comparison = _mm256_cmp_pd(R1MBR1, R2MBR1, 14); //greater than comparison
 
-    if ( isnan(comparison[0]) ||    // ymax1 > ymax2
-         isnan(comparison[1]) ||    // xmax1 > xmax2
-         (comparison[2] == 0) ||    // ymin1 <= ymin2
-         (comparison[3] == 0) )     // xmin1 <= xmin2 
+    if ( isnan(comparison[0]) ||    // xmin > xmax2  rectangle 1 is on the right side of the other rectangle
+         isnan(comparison[1]) ||    // ymin > ymax2  rectangle 1 is on the top of the other rectangle
+         (comparison[2] == 0) ||    // xmax <= xmin2 rectangle 1 is on the left side of the other rectangle
+         (comparison[3] == 0) )     // ymax <= ymin2 rectangle 1 is below the other rectangle 
     {
-        return 0;
+        return 0;       // no overlap
     }
     else
     {
-        return 1;
+        return 1;       // overlaps
     }
 }
 
