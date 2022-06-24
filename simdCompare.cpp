@@ -45,6 +45,14 @@ void testUnionSIMD( vector<RectReal> *rect1, vector<RectReal> *rect2 )
     
     __m256d r2 = _mm256_set_pd( rect2->at(0), rect2->at(1), rect2->at(2), rect2->at(3) );
     
+    /* The order of 4 double comparisons from r1 and r2 in returned variable comparison is reversed
+       r1           a0 a1 a2 a3 
+       r2           b0 b1 b2 b3
+       comparison[0] contains the result of a3 > b3
+       comparison[1] contains the result of a2 > b2
+       comparison[2] contains the result of a1 > b1
+       comparison[3] contains the result of a0 > b0       
+    */
     __m256d comparison = _mm256_cmp_pd(r1, r2, 14); //greater than comparison
     
     double gtResult[4];
@@ -146,9 +154,9 @@ void test3()
   testUnionSIMD(  rect1, rect2 );
 
   //__m256d var = _mm256_set_pd( 1.1, 2.2, 3.3, 4.4); 
-   // std::cout<<var[0]<<" "<<var[1]<<" "<<var[2]<<" "<<var[3];
+  // std::cout<<var[0]<<" "<<var[1]<<" "<<var[2]<<" "<<var[3];
    
-   // prints 4.4 3.3 2.2 1.1         
+  // prints 4.4 3.3 2.2 1.1         
    
 }
 
