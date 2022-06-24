@@ -68,13 +68,16 @@ and return it back.
    if (r1 > r2 ), returns 0000.. 
    
 7)   __m256d ifVec = _mm256_and_pd(comparison, aVec);
+     
      Verification:
      cout<<"ifVec    "<<ifVec[0]<<" "<<ifVec[1]<<" "<<ifVec[2]<<" "<<ifVec[3]<<endl;
      
 8)     __m256d elseVec = _mm256_andnot_pd(comparison, bVec);
+       
        Verification:
        cout<<"elseVec  "<<elseVec[0]<<" "<<elseVec[1]<<" "<<elseVec[2]<<" "<<elseVec[3]<<endl;
           
 9)     __m256d xV = _mm256_or_pd(ifVec, elseVec);
+       
        Verification:
        cout<<"simdCMP    "<<xV[0]<<" "<<xV[1]<<" "<<xV[2]<<" "<<xV[3]<<endl;
