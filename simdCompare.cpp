@@ -25,7 +25,10 @@ thats why you will see nan check as shown below
 isnan( gtResult[0] )      // https://cplusplus.com/reference/cmath/isnan/
 */
 
-//0: xmin, 1: ymin, 2: xmax, 3: ymax
+/*
+   This is sequential method to show how to vectorize this method using explicit vectorization 
+   0: xmin, 1: ymin, 2: xmax, 3: ymax
+*/
 void rectUnion(vector<RectReal> *rect1, vector<RectReal> *rect2)
 {
     rect1->at(0) = min( rect1->at(0), rect2->at(0) );
@@ -36,6 +39,9 @@ void rectUnion(vector<RectReal> *rect1, vector<RectReal> *rect2)
     cout<<rect1->at(0)<<" "<<rect1->at(1) <<" "<< rect1->at(2) <<" "<< rect1->at(3)<<endl;
 }
 
+/* This method below is the vectorized version of rectUnion as shown above 
+   Credit: Research Assistant Ulises Nevarez in my parallel computing lab wrote this code */
+*/
 void testUnionSIMD( vector<RectReal> *rect1, vector<RectReal> *rect2 )
 {
     cout<<"Inside testUnionSIMD function "<<endl;
