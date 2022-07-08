@@ -35,7 +35,7 @@ struct MBR
     }
 };
 
-
+/* Based on code written by research assistant Ulises Nevarez */
 int simdDoOverlap( struct MBR *R1, struct MBR *R2 )
 {
     //0: xmin, 1: ymin, 2: xmax, 3: ymax
@@ -56,7 +56,9 @@ int simdDoOverlap( struct MBR *R1, struct MBR *R2 )
     }
 }
 
-/* return 1 for overlap; else return 0 */
+/* This method is sequential code. 
+   This is written to illustrate how to explicity vectorize overlap test on two rectangles. 
+   Returns 1 for overlap; else return 0 */
 int doOverlap( struct MBR *R1, struct MBR *R2 )
 {  
     double xmin = R1->boundary->at(0);
