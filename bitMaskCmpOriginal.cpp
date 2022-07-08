@@ -3,6 +3,18 @@
 
 using namespace std;
 
+/*
+    This program is written by me to illustrate how to vectorize if/else statement 
+    using explicit vectorization
+    
+    Although I wrote this example, 
+    the orginial credit goes to the video tutorial which I saw first and 
+    then expanded on the professor's example here.
+    
+    SIMD Compare instruction discussed at at time 36:18 to 42:01
+    https://www.youtube.com/watch?v=AT5nuQQO96o&t=2178s
+*/
+
 void sequentialCmp(  double a[],   double b[], int size )
 {
   double x[4];
@@ -18,9 +30,10 @@ void sequentialCmp(  double a[],   double b[], int size )
     }
   }
   cout<<"sequential "<<x[0]<<" "<<x[1]<<" "<<x[2]<<" "<<x[3]<<endl;
-  // x = { 100, 200, 200, 100 };
+  //x = {1, 2, 3, 14}
 }
 
+/* This is parallelization of the function sequentialCmp as shown above */
 void simdCMP(  double a[],   double b[], int size )
 {
      __m256d aVec = _mm256_load_pd( &a[0] );
@@ -36,7 +49,8 @@ void simdCMP(  double a[],   double b[], int size )
           
      __m256d xV = _mm256_or_pd(ifVec, elseVec);
      cout<<"simdCMP    "<<xV[0]<<" "<<xV[1]<<" "<<xV[2]<<" "<<xV[3]<<endl;
-     //1 2 3 14
+
+      //For verification, xV = { 1, 2, 3, 14 }
 }
 
 int main()
