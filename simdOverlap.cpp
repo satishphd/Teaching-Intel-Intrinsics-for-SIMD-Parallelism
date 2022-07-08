@@ -35,27 +35,6 @@ struct MBR
     }
 };
 
-/* Based on code written by research assistant Ulises Nevarez */
-int simdDoOverlap( struct MBR *R1, struct MBR *R2 )
-{
-    //0: xmin, 1: ymin, 2: xmax, 3: ymax
-    __m256d R1MBR1 = _mm256_set_pd(R1->boundary->at(3), R1->boundary->at(2), R1->boundary->at(1), R1->boundary->at(0));
-    __m256d R2MBR1 = _mm256_set_pd(R2->boundary->at(1), R2->boundary->at(0), R2->boundary->at(3), R2->boundary->at(2));
-    __m256d comparison = _mm256_cmp_pd(R1MBR1, R2MBR1, 14); //greater than comparison
-
-    if ( isnan(comparison[0]) ||    // xmin > xmax2  rectangle 1 is on the right side of the other rectangle
-         isnan(comparison[1]) ||    // ymin > ymax2  rectangle 1 is on the top of the other rectangle
-         (comparison[2] == 0) ||    // xmax <= xmin2 rectangle 1 is on the left side of the other rectangle
-         (comparison[3] == 0) )     // ymax <= ymin2 rectangle 1 is below the other rectangle 
-    {
-        return 0;       // no overlap
-    }
-    else
-    {
-        return 1;       // overlaps
-    }
-}
-
 /* This method is sequential code. 
    This is written to illustrate how to explicity vectorize overlap test on two rectangles. 
    Returns 1 for overlap; else return 0 */
@@ -81,6 +60,31 @@ int doOverlap( struct MBR *R1, struct MBR *R2 )
  
     return 1;
 }
+
+/* 
+    This method below is an explicit vectorization of the doOverlap method shown above
+    Credit: Based on code written by research assistant Ulises Nevarez in my parallel computing lab. 
+*/
+int simdDoOverlap( struct MBR *R1, struct MBR *R2 )
+{
+    //0: xmin, 1: ymin, 2: xmax, 3: ymax
+    __m256d R1MBR1 = _mm256_set_pd(R1->boundary->at(3), R1->boundary->at(2), R1->boundary->at(1), R1->boundary->at(0));
+    __m256d R2MBR1 = _mm256_set_pd(R2->boundary->at(1), R2->boundary->at(0), R2->boundary->at(3), R2->boundary->at(2));
+    __m256d comparison = _mm256_cmp_pd(R1MBR1, R2MBR1, 14); //greater than comparison
+
+    if ( isnan(comparison[0]) ||    // xmin > xmax2  rectangle 1 is on the right side of the other rectangle
+         isnan(comparison[1]) ||    // ymin > ymax2  rectangle 1 is on the top of the other rectangle
+         (comparison[2] == 0) ||    // xmax <= xmin2 rectangle 1 is on the left side of the other rectangle
+         (comparison[3] == 0) )     // ymax <= ymin2 rectangle 1 is below the other rectangle 
+    {
+        return 0;       // no overlap
+    }
+    else
+    {
+        return 1;       // overlaps
+    }
+}
+
 
 int main()
 {
