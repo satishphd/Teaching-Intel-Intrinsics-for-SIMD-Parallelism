@@ -22,7 +22,7 @@ void read_ints (const char* file_name, double arr[])
   fscanf(file, "%lf", &i);    
   while (!feof (file))
     {  
-      printf ("%.2f ", i);
+      //printf ("%.2f ", i);
       arr[counter] = i;
       fscanf (file, "%lf", &i);  
       counter++;    
