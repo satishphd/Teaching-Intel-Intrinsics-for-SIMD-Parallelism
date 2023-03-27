@@ -5,6 +5,8 @@ Intel Intrinsics Guide for Advanced Vector Extensions (AVX): https://software.in
 
 My youtube lecture link on this topic of using SIMD parallelism using Intrinsics (1 hour lecture): https://www.youtube.com/watch?v=KABGmD7BJ28
 
+0) vectorAdd.c is a sample program with x86 intrinsic functions that demonstrates how to use SIMD functions to add two input vectors to produce an ouput vector.
+
 1) arrayLab.c is a program that can be assigned as lab work or homework for writing C loops using intrinsics
 
 2) evalPoly.c is a program that contains a function to evaluate a polynomial. Lab work can be using intrinsics to implement the function.
