@@ -86,7 +86,7 @@ and return it back.
           
 10)  __m256d _mm256_or_pd( __m256d m1, __m256d m2);
 
-      Performs bitwise logical AND operation on float64 vectors.
+      Performs bitwise logical OR operation on float64 vectors.
 
        Verification:
        cout<<"simdCMP    "<<xV[0]<<" "<<xV[1]<<" "<<xV[2]<<" "<<xV[3]<<endl;
