@@ -64,22 +64,26 @@ Initialize a __m256d variable with four doubles passed to this function (e0, e1,
 and return it back.
 
 6) __m256d _mm256_cmp_pd(r1, r2, 14); //greater than comparison     
-   Returns bitmask (1111s or 0000s) that stores the comparison result of this condition if( r1 > r2 )
+   Returns bitmask (1111s or 0000s) that stores the comparison result of this condition if( r1 > r2 ).
+   
    if (r1 > r2 ), returns 1111..      (Since this is bitwise 1111.., this is NaN in IEEE-754 specification) 
    
    if (r1 > r2 ), returns 0000.. 
    
-7)   __m256d ifVec = _mm256_and_pd(comparison, aVec);
+7)   __m256d _mm256_and_pd(__m256d m1, __m256d m2)
+     Performs bitwise logical AND operation on float64 vectors.
      
      Verification:
-     cout<<"ifVec    "<<ifVec[0]<<" "<<ifVec[1]<<" "<<ifVec[2]<<" "<<ifVec[3]<<endl;
-     
-8)     __m256d elseVec = _mm256_andnot_pd(comparison, bVec);
+     cout<<"ifVec    "<<ifVec[0]<<" "<<ifVec[1]<<" "<<ifVec[2]<<" "<<ifVec[3]<<endl;     
+   
+ 8) __m256d _mm256_andnot_pd(__m256d m1, __m256d m2)
+     Performs bitwise logical AND NOT operation on float64 vectors
        
-       Verification:
-       cout<<"elseVec  "<<elseVec[0]<<" "<<elseVec[1]<<" "<<elseVec[2]<<" "<<elseVec[3]<<endl;
+     Verification:
+     cout<<"elseVec  "<<elseVec[0]<<" "<<elseVec[1]<<" "<<elseVec[2]<<" "<<elseVec[3]<<endl;
           
-9)     __m256d xV = _mm256_or_pd(ifVec, elseVec);
-       
+11)     __m256d _mm256_or_pd( __m256d m1, __m256d m2);
+       Performs bitwise logical AND operation on float64 vectors.
+
        Verification:
        cout<<"simdCMP    "<<xV[0]<<" "<<xV[1]<<" "<<xV[2]<<" "<<xV[3]<<endl;
