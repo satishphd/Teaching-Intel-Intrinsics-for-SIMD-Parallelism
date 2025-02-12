@@ -72,21 +72,12 @@ and return it back.
    
 7)   __m256d _mm256_and_pd(__m256d m1, __m256d m2)
 
-      Performs bitwise logical AND operation on float64 vectors.
-     
-     Verification:
-     cout<<"ifVec    "<<ifVec[0]<<" "<<ifVec[1]<<" "<<ifVec[2]<<" "<<ifVec[3]<<endl;     
+      Performs bitwise logical AND operation on float64 vectors.   
    
  9) __m256d _mm256_andnot_pd(__m256d m1, __m256d m2)
 
      Performs bitwise logical AND NOT operation on float64 vectors
-       
-     Verification:
-     cout<<"elseVec  "<<elseVec[0]<<" "<<elseVec[1]<<" "<<elseVec[2]<<" "<<elseVec[3]<<endl;
           
 10)  __m256d _mm256_or_pd( __m256d m1, __m256d m2);
 
       Performs bitwise logical OR operation on float64 vectors.
-
-       Verification:
-       cout<<"simdCMP    "<<xV[0]<<" "<<xV[1]<<" "<<xV[2]<<" "<<xV[3]<<endl;
