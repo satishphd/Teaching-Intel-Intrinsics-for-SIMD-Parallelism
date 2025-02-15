@@ -1,0 +1,84 @@
+Write SIMD pseudo-code for the following problems. There are 3 problems. Each problem carries 10 points.
+
+Note: This is a group assignment. So, two students can make a group, brainstorm together and submit the assignment once for each group. Same grade will be assigned to both members in the group. 
+
+SIMD vocabulary that you have to use in your pseudo-code is given below. This vocabulary is the parallel programming interface provided by the CPU. This vocabulary is needed to keep your pseudo-code readable and to get full points. Therefore it is important to stick to this hardware-software interface.
+
+1) SIMD vectors should be written as SIMDVec v;  This means that the SIMD vector is called v and it is 512 bits wide. This is the same concept as __m512d variable. This means that the SIMD variable is wide enough to contain 8 double precision floating point numbers.
+
+2) SIMD load function will be called SIMD_Load( double *array). This function will load 8 contiguous double precision floating numbers from main memory pointed to by the array address. After this function call execution, 8 double precision floating point numbers will be loaded to a SIMDVec variable. 
+
+  SIMDVec  SIMD_Load( double *array);      // Here input is the array and output is returned by the function.
+
+3) SIMD store function will be called SIMD_Store( double *array, SIMDVec v ). This function will store the contents of the SIMD vector v to the main memory pointed by array address. Input is v and output goes to the array.
+
+4) SIMD set function will be called SIMD_Set( a, b, c, d, e, f, g, h ). This set function initializes and returns a variable of type SIMDVec containing a, b, c, d, e, f, g, and h.
+
+  SIMDVec   SIMD_Set( double a, double b, .., double g, double h );
+
+5) SIMD add function will be called SIMD_Add( SIMDVec a, SIMDVec b ). Returns a variable of type SIMDVec containing the sum of a and b SIMD vectors.
+
+  SIMDVec   SIMD_Add( SIMDVec a, SIMDVec b );
+
+6) SIMD multiply function will be called SIMD_Mul( SIMDVec a, SIMDVec b ). Returns a variable of type SIMDVec containing the product of a and b SIMD vectors.
+
+  SIMDVec   SIMD_Mul( SIMDVec a, SIMDVec b );
+
+7) SIMD subtraction function will be called SIMD_Sub( SIMDVec a, SIMDVec b ). Returns a variable of type SIMDVec containing the difference of a and b SIMD vectors.
+
+  SIMDVec   SIMD_Sub( SIMDVec a, SIMDVec b );
+
+ 
+
+1) Implement Euclidean distance function using the SIMD functions and SIMD variables described above. Don't use a SIMD function or SIMD variable that was not taught in the class. 0 points will be given if you use such functions that were not covered in the class. The SIMD vocabulary is limited for the assignment questions. Use the SIMD variable names and function names from the Vocabulary described in this document.
+
+double euclidean_distance(double test[], double reference[], int SIZE)
+
+Just focus on this method for SIMD parallelization.
+
+double euclidean_distance( double test[], double reference[], int SIZE)
+{
+  int counter;
+  double distance = 0;
+  for(counter = 0; counter<SIZE; counter++)
+  {
+     distance += (test[counter] - reference[counter]) * (test[counter] - reference[counter]);
+  }
+  return distance;
+}
+
+ 
+
+2) Write a SIMD program's pseudo-code to add a bunch of numbers to yield a global sum. You can assume N perfectly divided 32 bytes. Only use the SIMD functions listed in the document "SIMD functions.txt" (in Canvas Module under SIMD module). Don't use a SIMD function or SIMD variables that was not taught in the class. Take a look at the vector sum sample code that Instructor covered in the class to get started. Use the SIMD variable naming and function naming convention from the Vocabulary in this document.
+
+double globalSum( double arr[], int N)
+
+{
+
+   double sum = 0;
+
+   for(int i = 0; i<N; i++)
+
+   {
+
+       sum = sum + arr[i];
+
+   }
+
+   return sum;
+
+}
+
+Note: Instructor will provide hints on how to do this problem in SIMD during the lecture.
+
+ 
+
+3) Add vector intrinsics after doing loop unrolling for Polynomial Evaluation program. Submit SIMD pseduo-code for the following function:
+
+double evaluate(double x, double *coefficients)
+
+Link to sequential code: https://github.com/satishphd/Teaching-Intel-Intrinsics-for-SIMD-Parallelism/blob/main/HW/evalPoly.c
+
+Note: Don't use any SIMD functions or SIMD variables that was not taught in the class. Take a look at the vector sum sample code that Instructor covered in the class to get started. Use the SIMD variable naming convention and function naming convention from the Vocabulary in this document.
+
+
