@@ -9,6 +9,11 @@
 
 // pow function in C: x to the power y is given by function pow(double x, double y);
 
+// coefficients array is {1, 2, 3, 4, -2}
+// polynomial: x^4 + 2x^3 + 3x^2 + 4x -2x^0
+// Evaluating polynomial when x = 1,
+// 1 + 2*1 + 3*1 + 4*1 -2
+// 8  (ans)
 double evaluate(double x, double *coefficients)
 {
      int degree;
@@ -40,7 +45,11 @@ double evaluate(double x, double *coefficients)
 double evaluateSIMD(double x, double *coefficients)
 {
     double answer = 0;
-    
+    // Loop, loop unrolling
+    SIMDVec v
+    SIMD_Load()
+    SIMD_Store()
+    SIMD_Mul()
     return answer;
 }
 
